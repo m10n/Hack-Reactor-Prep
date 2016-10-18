@@ -171,7 +171,7 @@ Use the function to calculate what the future value of $1700 (P = 1700) deposite
 
 */
 function futureValue(P, i, n, t) {
-	return P*Math.pow((1 + i/n), n*t); 
+	return P * Math.pow((1 + i / n), n * t); 
 }
 futureValue(1700, 0.047, 4, 6);
 // => 2250.1218394891257
