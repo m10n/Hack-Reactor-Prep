@@ -184,7 +184,7 @@ futureValue(1700, 0.047, 4, 6);
 Write a power function that accepts the parameters base and exponent and returns the result. Replace square and cube with the power function you just wrote. Do not use Math.pow.
 */
 function power(base, exponent) { 
-  if (exponent == 0)
+  if (exponent === 0)
     return 1;
   else
     return base * power(base, exponent - 1);
