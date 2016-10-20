@@ -4,6 +4,22 @@
 //but many recursion problems are specific to or well-suited for it
 
 
+
+
+/*
+Write a power function that accepts the parameters base and exponent and returns the result. 
+Replace square and cube with the power function you just wrote. Do not use Math.pow.
+*/
+function power(base, exponent) { 
+  if (exponent === 0)
+    return 1;
+  else
+    return base * power(base, exponent - 1);
+}
+power(8,4);
+// => 4096
+
+
 /* Countdown from n... 
 using a loop vs. recursion
 */
@@ -293,6 +309,7 @@ multiply(12,11);
 //=> 132
 
 
+/* Advanced - Brendan's solutions */
 
 function stringLength(str)
 {
@@ -300,5 +317,35 @@ function stringLength(str)
 		return 0;
 	return 1+stringLength(str.slice(1));
 }
+function  modulo(a,b)
+{
+	if(a===0)
+		return 0;
+	if(b>a)
+		return a;
+
+	return  modulo(a-b,b);
+}
+function countChars(str,char)
+{
+	var i=str.length-1,c=0;;
+	while(i>=0)
+	{
+		if(str[i]===char)
+			c++;
+		i--;
+	}
+	return c;
+
+}
+function indexOf(str,char)
+{
+	if(str[0]===char)
+		return 0;
+	return 1+indexOf(str.slice(1),char);
+}
+console.log( indexOf("ellho",'h'));
+
+
 
 
