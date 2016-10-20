@@ -1,4 +1,4 @@
-// Introduction to Functions
+// Functions
 // exercises from https://learn.makerpass.com/groups/reactor-prep-am-20161017/courses/reactorcore/reactorprep?id=lessons%2Fintro-functions
 
 
