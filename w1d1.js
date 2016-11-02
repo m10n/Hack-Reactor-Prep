@@ -1,10 +1,9 @@
-// Functions
+// Introduction to Functions
 // exercises from https://learn.makerpass.com/groups/reactor-prep-am-20161017/courses/reactorcore/reactorprep?id=lessons%2Fintro-functions
 
 
-/*
-Complete the function cube that returns the cube of x
-*/
+
+// Complete the function cube that returns the cube of x
 function cube(x) {
 	return x * x * x;
 }
@@ -13,34 +12,35 @@ cube(4);
 
 
 
-
-
-
-/*
-Complete the function fullName that should take two parameters, firstName and lastName, and returns the firstName and lastName concatenated together with a space in between.
-*/
-function fullName(firstName, lastName) {
-	return firstName + " " + lastName;
+// Complete the function fullName that should take two parameters, firstName and lastName, and returns the firstName and lastName concatenated together with a space in between.
+function fullName(firstName, lastName){
+	return firstName + ' ' + lastName;
 }
-fullName("Morgan", "Simpson");
+fullName('Morgan', 'Simpson')
+//=> 'Morgan Simpson'
 
 
 
-
-
-/* Write a function average that takes two numbers as input (parameters), and returns the average of those numbers
-*/
-function average(one, two) {
-  return (one + two) / 2;
+// Write a function average that takes two numbers as input (parameters), and returns the average of those numbers.
+function average(n1, n2){
+	return (n1 + n2) / 2;
 }
-average(8,4);
-// => 6
+average(10,30);
+//=> 20
 
 
 
-/*
-Write a function greeter that takes a name as an argument and greets that name by returning something along the lines of "Hello, <name>!"
-*/
+// Write a function greeter that takes a name as an argument and greets that name by returning something along the lines of "Hello, <name>!"
+function greeter(name){
+	return 'Hello ' + name + '!';
+}
+greeter('Shawn');
+//=> 'Hello Shawn!'
+
+
+
+
+// Write a function greeter that takes a name as an argument and greets that name by returning something along the lines of "Hello, <name>!"
 function greeter(name){
   return "Hello, " + name + "!";
 }
@@ -50,8 +50,8 @@ greeter("Shawn");
 
 
 
-/* Translate these geometric formulas (the area & perimeter of a square, rectangle, parallelogram, trapezoid, and triangle and area & circumference of a circle) intro JavaScript functions.
-*/
+ // Translate these geometric formulas (the area & perimeter of a square, rectangle, parallelogram, trapezoid, and triangle and area & circumference of a circle) intro JavaScript functions.
+
 // Square
 function areaSquare(s) {
 	//A = s^2
@@ -164,34 +164,56 @@ Math.pow(4, 3); // 4^3 or 4*4*4 => 64
 
 
 
-/*
-Write a function futureValue that can be used to calculate the future value of a quantity of money using compound interest.
 
-Use the function to calculate what the future value of $1700 (P = 1700) deposited in a bank that pays an annual interest rate of 4.7% (i = 0.047), compounded quarterly (n = 4) after 6 years (t = 6) (you can use Math.pow to do exponentiation).
-
-*/
+// Write a function futureValue that can be used to calculate the future value of a quantity of money using compound interest.
+// Use the function to calculate what the future value of $1700 (P = 1700) deposited in a bank that pays an annual interest rate of 4.7% (i = 0.047), compounded quarterly (n = 4) after 6 years (t = 6) (you can use Math.pow to do exponentiation).
 function futureValue(P, i, n, t) {
-	return P * Math.pow((1 + i / n), n * t); 
+	return P*Math.pow((1 + i/n), n*t); 
 }
 futureValue(1700, 0.047, 4, 6);
 // => 2250.1218394891257
 
 
 
-
-
-/*
-Write a power function that accepts the parameters base and exponent and returns the result. Replace square and cube with the power function you just wrote. Do not use Math.pow.
-*/
-function power(base, exponent) { 
-  if (exponent === 0)
-    return 1;
-  else
-    return base * power(base, exponent - 1);
+// Write a power function that accepts the parameters base and exponent and returns the result. Replace square and cube with the power function you just wrote. Do not use Math.pow.
+function power(base, exponent){
+	if(exponent === 0){
+		return 1;
+	} else {
+		return base * power(base, --exponent); //exponent-1
+	}
 }
-power(8,4);
-// => 4096
+power(4,3);
+//=> 64
 
+
+function power(base, exponent) {
+  var result = 1;
+  while(exponent--) {
+    result *= base;
+  }
+  return result;
+}
+power(4,3);
+//=> 64
+
+
+// Write your own square-root function called sqrt that accepts a number parameter and returns an approximate square root. Square-root approximations make use of averages. Be sure to use the average function you previously wrote. The first version of your square root function should perform no more than 3 successive averages.
+function squareRoot(number, guess){
+	if (guess !== guess){
+		guess = number / 2;
+	}
+	var avgGuess = number / guess;
+	var newGuess = (avgGuess + guess) / 2;
+	if(guess === newGuess){
+		return guess;
+	}
+	return squareRoot(number, newGuess);
+}
+console.log(squareRoot(50,3));
+//7.0710678118654755
+console.log(squareRoot(256,48));
+//16
 
 
 
