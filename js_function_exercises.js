@@ -42,6 +42,7 @@ function power(base, exponent){
 		return 1;
 	}
 	 return base * power(base, exponent-1);
+	//return base * power(base, --exponent);
 }
 power(4,5); //=> 1024
 
@@ -56,15 +57,18 @@ function func(b,e){
 func(4,6); //=> 4096
 
 
-function power(base, exponent){
-	if(exponent === 0){
-		return 1;
-	} else {
-		return base * power(base, --exponent); //exponent-1
-	}
+function power(base, exp){
+	var result = 1;
 }
-power(4,3);//=> 64
 
+function power(base, exponent){
+	var result = 1;
+	while(exponent > 0){
+		result = result * base;
+		exponent = exponent - 1;
+	}
+	return result;
+}
 
 function power(base, exponent) {
   var result = 1;
@@ -196,6 +200,36 @@ sum(3); // => 3 + 2 + 1 + 0 => 6
 sum(4); // => 4 + 3 + 2 + 1 + 0 => 10
 sum(5); // => 5 + 4 + 3 + 2 + 1 + 0 => 15
 
+
+
+function sum(n){
+	var result = 0;
+	while(n>0){
+		result = result + n;
+		n = n-1;
+	}
+	return result
+}
+sum(3); // =>6
+sum(4); // => 10
+
+
+
+
+
+function sum(n){
+  var result = 0;
+  while(n > 0){
+    result += n;
+    n -= 1;
+  }
+  return result;
+}
+sum(3); // =>6
+sum(4); // => 10
+
+
+
 // Factorial of n: The factorial of n is the product of all the integers preceding n, starting with 1, e.g.:
 function factorial(n){
 	if(n===1){
@@ -203,6 +237,20 @@ function factorial(n){
 	}
 	return n * factorial(n-1);
 }
+
+
+
+function factorial(n){
+	var result = 1;
+	while(n > 1){
+		result *= n;
+		n -= 1;
+	}
+	return result;
+}
+
+
+
 factorial(3); // => 3 * 2 * 1 => 6
 factorial(4); // => 4 * 3 * 2 * 1 => 24
 factorial(5); // => 5 * 4 * 3 * 2 * 1 => 120
@@ -216,6 +264,18 @@ function repeatString(str,count){
 	}
 	return str + repeatString(str,count-1);
 }
+
+function repeatString(string, count){
+	var result = '';
+	while(count > 0){
+		result += string;
+		count--;
+	}
+	return result;
+}
+repeatString('iloveshawn',100);
+//=> 'iloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawniloveshawn'
+
 repeatString('dog', 0); // => ''
 repeatString('dog', 1); // => 'dog'
 repeatString('dog', 2); // => 'dog' + 'dog' => 'dogdog'
@@ -248,7 +308,6 @@ function fib(n){
 	}
 	return fib(n-1) + fib(n-2);
 }
-
 // fib(0) is 1, fib(1) is 1, fib(2) is 2, fib(3) is 3, fib(4) is 5, etc.
 
 
@@ -283,6 +342,7 @@ sum(2, 4); // => 2 + 3 + 4 => 9
 sum(3, 5); // => 3 + 4 + 5 => 12
 sum(2, 7); // => 2 + 3 + 4 + 5 + 6 + 7 => 27
 
+
 // What happens if start is larger than end? Modify sum to check for this case and, when found, swap the start and end arguments.
 function sum (start, end) {
   if (start > end) {
@@ -293,6 +353,7 @@ function sum (start, end) {
     return start + sum(start + 1, end);
   }
 }
+
 
 
 // Write a function called isEven that, given a number n as a parameter, returns true if that number is even, and false otherwise; however, you need to do this without using the % operator.
@@ -317,7 +378,7 @@ function multiply(n1,n2){
 	return n1 + multiply(n1,n2-1);
 }
 multiply(12,11); //=> 132
-
+multiply(9,8); //=> 72
 
 
 
@@ -346,7 +407,124 @@ function sumEvens(n){
 sumEvens(14); //=> 56
 
 
-// finish advanced - https://learn.makerpass.com/groups/reactor-prep-am-20161017/courses/reactorcore/reactorprep?id=lessons%2Fintro-repetition
+// The "modulo" operator (%) computes the remainder after dividing its left operand by its right one. Write a function called modulo that works like the % operator, but without using it.
+function modulo(x,y){
+	if(x === 0){
+		return 0;
+	} else if(y > x){
+		return x;
+	} else {
+	return modulo(x-y,y);
+	}
+}
+7 % 5; // => 2
+8 % 10; // => 8
+modulo(9,3); // => 0
+modulo(66,5); // => 1
+
+
+
+
+// Write a function called stringLength that accepts a string as a parameter and computes the length of that string; however, as you may have guessed, you are not allowed to use the length property of the string! make use of the string method called slice.
+"".slice(1); //=> ''
+"hello".slice(0); //=> 'hello'
+"hello".slice(1); //=> 'ello'
+
+function stringLength(str){
+	if(str === ''){
+		return 0;
+	}
+	return 1 + stringLength(str.slice(1));
+}
+stringLength('I love you'); //=> 10
+
+
+
+// Write a function called countChars that accepts two parameters: a string and a character. This function should return a number representing the number of times that the character appears in string. To access the first element of a string, you can use the following syntax:
+// // access the element at index 0
+// "hello"[0]; // => "h"
+// "dog"[0]; // => "d"
+// HINT: You'll also need to make use of the slice method as shown above in the exercise on computing the length of a string.
+
+function countChars(str,char){
+	var i = str.length-1;
+	var count = 0;
+	while(i >= 0){
+		if(str[i] === char){
+			count++;
+		}
+		i--;
+	}
+	return count;
+}
+countChars('morgan missen','m'); //=> 2
+//works but doesn't use slice
+
+function countChars (str, char) {
+  if (str === '') {
+    return 0;
+  } else if (str[0] === char) {
+    return 1 + countChars(str.slice(1), char);
+  } else {
+    return countChars(str.slice(1), char);
+  }
+}
+
+
+
+
+// Implement a function called indexOf that accepts two paramters: a string and a character, and returns the first index of character in the string. You'll need to make use of the techniques for accessing the first element of a string and the rest of the string (slice) as before.
+function indexOf (str, char) {
+  if (str === '') {
+    return 1;
+  } else if (str[0] === char) {
+    return 0;
+  } else {
+    return 1 + indexOf(str.slice(1), char);
+  }
+}
+indexOf('doesthiswork?','d'); //=> 0
+
+
+
+// Write a function called billTotal that can be used to calculate the total to be paid at a restaurant -- including tip and tax -- given the subtotal (i.e. cost of food and drinks). We can assume that the tip will be 15% and tax will be 9.5%. Make sure that the tip does not include the tax!
+function billTotal(subTotal){
+	return subTotal + subTotal*.095 + subTotal*.15;
+}
+billTotal(100); //=> 124.5
+
+
+
+//arrays
+
+// Write a function first that takes an array as an argument and returns the first element in that array.
+function first(array){
+	return array[0];
+}
+first([3,24,19,79]); //=>3 
+
+
+
+
+// Write a function last that takes an array as an argument and returns the last element in the array. Hint: What is the relationship between the index of the last element in the array and the length of the array?
+function last(array){
+	return array[array.length - 1];
+}
+last([3,24,19,79]); //=>79
+
+
+
+// Write a function called counter that, when invoked, always returns a number that is one more than the previous invocation. For instance:
+var count = 1;
+function counter() {
+	return count++;
+}
+console.log(counter());
+
+
+
+
+
 
 
 
