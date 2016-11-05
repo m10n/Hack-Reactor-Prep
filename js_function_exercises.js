@@ -522,6 +522,113 @@ function counter() {
 console.log(counter());
 
 
+var count = 1;
+function counter() {
+	return count++;
+}
+console.log(counter());
+
+
+
+
+// 1. Change all odd numbers to be those numbers multiplied by two: [4, 9, 7, 2, 1, 8];
+function multiplyOdds(array){
+	for(var i = 0; i < array.length; i++){
+		if(array[i] % 2 === 1){
+			array[i] *= 2;
+		}
+	}
+	return array;
+}
+var numbers = [4, 9, 7, 2, 1, 8];
+multiplyOdds(numbers); // => [4, 18, 14, 2, 2, 8]
+
+
+
+
+// Write a function called nth that accepts an array and an index as parameters, and returns the element at that index.
+function nth(array, i){
+	return array[i];
+}
+nth([4, 18, 14, 2, 2, 8 ], 1) //=> 18
+
+
+
+
+
+// 3. Write a function butlast that returns all of the elements in the array except for the last one (you may want to use slice for this one as well).
+function butlast(array){
+	return array.slice(0, array.length-1);
+}
+var array = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]
+butlast(array); //=> [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584 ]
+
+//using pop
+function butlast(array){
+	array.pop();
+	return array;
+}
+var array = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]
+butlast(array); //=> [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584 ]
+
+
+
+
+// 4. Complete the function cons that accepts an element and an array, and returns an array with the element added to the front of the array:
+function cons(element, array){
+	array.unshift(element);
+	return array;
+}
+var array = ['the','lady','doth','protest','too','much'];
+cons('methinks', array); //=> [ 'methinks', 'the', 'lady', 'doth', 'protest', 'too', 'much' ]
+
+
+
+
+// 5. Complete the function conj that accepts an array and an element, and returns an array with the element added to the end of the array:
+function conj(array, element){
+	array.push(element);
+	return array;
+}
+var array = ['the','lady','doth','protest','too','much'];
+conj(array, ', methinks'); //=> [ 'methinks', 'the', 'lady', 'doth', 'protest', 'too', 'much' 
+
+
+
+
+
+//Given an array, return a new array with each element squared
+function squared(array){
+	var newArray = [];
+	for(var i = 0; i < array.length; i++){
+		newArray[i] = array[i] * array[i];
+	}
+	return newArray
+}
+var array = [1,2,3,4,5];
+squared(array); //=> [ 1, 4, 9, 16, 25 ]
+
+
+
+
+
+//Given an array of numbers, return a new array of just the even numbers
+function evens(array){
+	var newArray = [];
+	for(var i = 0; i < array.length; i++){
+		if(array[i] % 2 === 0){
+		newArray.push(array[i]);
+		}
+	}
+	return newArray;
+}
+var array = [1,2,3,4,5];
+evens(array); //=> [ 1, 4, 9, 16, 25 ]
+
+
+
+
+
 
 
 
