@@ -345,13 +345,13 @@ function organizeCurrencies(input) {
 	var pounds = {};
 	for (var i=0; i < input.length; i++) {
 		if (input[i][input[i].length-1] === 'p') {
-			if (pence[input[i]] === undefined) {
+			if (pence[input[i]] !== 1) {
 				pence[input[i]] = 1;
 			}
 				pence[input[i]] += 1;
 		}
 		else if (input[i][0] === ('£')) { 
-			if (pounds[input[i]] === undefined) {
+			if (pounds[input[i]] !== 1) {
 				pounds[input[i]] = 1;
 			}
 			pounds[input[i]] += 1;
@@ -363,6 +363,256 @@ function organizeCurrencies(input) {
 organizeCurrencies(input); //=> 
 // [ { '1p': 2, '2p': 2, '5p': 3, '10p': 2, '20p': 3, '50p': 3 },
 //   { '£1': 3, '£2': 2 } ]
+
+
+
+
+
+// Problem 1 - Cold Caller
+// Here are some students...
+// ['Aaron Aves',
+// 'Alex Duda',
+// 'Colton Jett',
+// 'Elliott Birch',
+// 'Jamin Ewell',
+// 'Jane Vaden',
+// 'Jared Cairns',
+// 'Jason Sierra',
+// 'Joshua Peng',
+// 'Nick Partridge',
+// 'Rachel Noble',
+// 'Richard Mathera',
+// 'Robert Ballard',
+// 'Sammy Icaza',
+// 'Samy Kebaish',
+// 'Silvia Fernandez',
+// 'Vandeth Nop',
+// 'Vy Trinh']
+// Please make a "cold caller" script that picks one of these people to call on, at random. Don't worry about duplicates. Please don't refer back to other solutions, write it from scratch. 
+var students = ['Aaron Aves',
+'Alex Duda',
+'Colton Jett',
+'Elliott Birch',
+'Jamin Ewell',
+'Jane Vaden',
+'Jared Cairns',
+'Jason Sierra',
+'Joshua Peng',
+'Nick Partridge',
+'Rachel Noble',
+'Richard Mathera',
+'Robert Ballard',
+'Sammy Icaza',
+'Samy Kebaish',
+'Silvia Fernandez',
+'Vandeth Nop',
+'Vy Trinh'];
+
+function coldCaller(){
+	return students[Math.floor(Math.random() * students.length)];
+}
+coldCaller(students); //=> 'Jamin Ewell' => 'Aaron Aves' => 'Vy Trinh'
+
+
+
+
+
+
+// Problem 3 - Title Case
+// Write a function that title-cases a string of words. Make a distinction between prepositions (that shouldn't be capitalized) and other words (which should be capitalized).
+// Factor out your solution cleanly into a set of well-named helper functions. The goal is for your code to be very readable to a fellow programmer, without requiring comments.
+
+function titleCase(string) {
+	var words = string.split(' ');
+	var prepositions = ['a', 'an', 'and', 'at', 'but', 'by', 'for', 'in', 'nor', 'of', 'on', 'or', 'out', 'so', 'the', 'to', 'up', 'yet'];
+	var casedTitle = '';
+	words.forEach(function(word) {
+		if(prepositions.includes(word)) {
+		casedTitle += word.toLowerCase() + ' ';
+		} else {
+		casedTitle += word[0].toUpperCase() + word.slice(1) + ' ';
+		}
+	});
+	return casedTitle;
+}
+titleCase('we were on the beach by the sea.'); //=> 'We Were on the Beach by the Sea. '
+
+
+
+
+
+// Problem 4 - Leap Years
+// Write a function that determines which of the next n years is a leap year. If the caller passes in 300, then the program should return the leap years between 2016 and 2316.
+function leapYears(yearsFromNow){
+	var theFuture = (2016 + yearsFromNow);
+	for(var year = 2016; year < theFuture; year++){
+		if( (0 === year % 4) && (0 !== year % 100) || (0 === year % 400) ){
+			console.log(year);
+		}
+	}
+}
+leapYears(300); //=>
+// 2016
+// 2020
+// 2024
+// 2028
+// 2032
+// 2036
+// 2040
+// 2044
+// 2048
+// 2052
+// 2056
+// 2060
+// 2064
+// 2068
+// 2072
+// 2076
+// 2080
+// 2084
+// 2088
+// 2092
+// 2096
+// 2104
+// 2108
+// 2112
+// 2116
+// 2120
+// 2124
+// 2128
+// 2132
+// 2136
+// 2140
+// 2144
+// 2148
+// 2152
+// 2156
+// 2160
+// 2164
+// 2168
+// 2172
+// 2176
+// 2180
+// 2184
+// 2188
+// 2192
+// 2196
+// 2204
+// 2208
+// 2212
+// 2216
+// 2220
+// 2224
+// 2228
+// 2232
+// 2236
+// 2240
+// 2244
+// 2248
+// 2252
+// 2256
+// 2260
+// 2264
+// 2268
+// 2272
+// 2276
+// 2280
+// 2284
+// 2288
+// 2292
+// 2296
+// 2304
+// 2308
+// 2312
+
+
+
+
+
+
+// Problem 5 - Array Reversal
+// Write a function that reverses the given array.  Please do this "in place" -- do not instantiate a separate array to return.
+// Also, please do this manually (without using the library method "reverse").
+function push(array, i){
+	array.push(i);
+	return array;
+}
+function reverse(array) {
+  if (array.length === 0) {
+    return [];
+  }
+  return push(reverse(array.slice(1)), array[0]);
+}
+var array = [0,1,2,3,4,5];
+reverse(array); //=> [ 5, 4, 3, 2, 1, 0 ]
+
+
+function reverse(array) {
+	for (var i = 0; i < array.length / 2; i++) {
+		var e = array[array.length - (i + 1)];
+		array[array.length - (i + 1)] = array[i];
+		array[i] = e;
+	}
+	return array;
+}
+var array = [0,1,2,3,4,5];
+reverse(array); //=> [ 5, 4, 3, 2, 1, 0 ]
+
+
+
+
+
+
+// Problem 6 - Number sort
+// Write a function that sorts a passed-in list of numbers, using Array.sort(). Make sure to test this.
+function sorts(array){
+	return array.sort(function(a, b){
+	return a - b;
+	});
+}
+var array = [3023,5432,-4,-48329203, 567,0,1,5];
+sorts(array); //=> [ -48329203, -4, 0, 1, 5, 567, 3023, 5432 ]
+
+
+
+
+
+
+// Problem 7 - Is palindrome?
+// Write a function that tests whether a string is a palindrome.
+function palindrome(string)  {
+  for (var i = 0; i < string.length / 2; i++){
+  	if (string[i] !== string[string.length - i - 1]) {
+    	return false; 
+		}
+	}
+  return true; 
+}
+palindrome('radar'); //=> true
+palindrome('javascript'); //=> false
+
+
+function palindrome(string) {
+	var a = 0;
+	var z = string.length - 1;
+	while (a < z) {
+		if(string.charAt(a) !== string.charAt(z)) {
+			return false;
+		}
+		a++;
+		z--;
+	}
+   return true;
+}
+palindrome('radar'); //=> true
+palindrome('javascript'); //=> false
+
+
+
+
+
+
+
 
 
 
